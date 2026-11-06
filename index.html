@@ -32,7 +32,7 @@ var CONFIG={
   apresentacao:{
     frase:'Um momento de cuidado e relaxamento para você',
     descricao:'Massoterapia com atendimento presencial no Centro de Francisco Beltrão-PR. Agende o seu horário pelo WhatsApp.',
-    modalidade:'Atendimento presencial · Francisco Beltrão-PR'
+    modalidade:'Atendimento presencial'
   },
 
   endereco:{
@@ -400,7 +400,7 @@ html.eco #bub.on{animation:bpop .55s cubic-bezier(.2,1.4,.4,1) forwards}
 #snd,#thm{position:fixed!important;top:10px;z-index:30;width:38px!important;height:38px!important}
 #snd{left:10px}#thm{right:10px}
 @media(max-width:999px){#bot{max-height:min(calc(100dvh - var(--clk,215px) - 14px),62dvh)!important}}
-html.eco *:not(#bub):not(#bub *){animation:none!important;transition:none!important}
+html.eco *:not(#bub):not(#bub *):not(#info):not(#qrs):not(#contact){animation:none!important;transition:none!important}
 
 /* texto "sobre mim" logo abaixo de "Massoterapeuta": mesma fonte, em verde */
 #stx{margin-top:8px;padding-top:0;border-top:0;text-align:center;font-size:clamp(11px,.95vw,16px);letter-spacing:.04em;line-height:1.5;color:var(--atx)}
