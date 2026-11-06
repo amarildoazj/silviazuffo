@@ -397,7 +397,6 @@ html.eco #bub.on{animation:bpop .55s cubic-bezier(.2,1.4,.4,1) forwards}
 @media(max-width:999px){#stx{max-height:max(150px,calc(100dvh - 600px));font-size:clamp(14.5px,4vw,17px)}}
 
 /* ---- botões de som (canto superior esquerdo) e tema (canto superior direito); detalhes sempre abertos; sem animações ---- */
-#tgrow{display:none!important}
 #snd,#thm{position:fixed!important;top:10px;z-index:30;width:38px!important;height:38px!important}
 #snd{left:10px}#thm{right:10px}
 @media(max-width:999px){#bot{max-height:min(calc(100dvh - var(--clk,215px) - 14px),62dvh)!important}}
@@ -412,7 +411,6 @@ html.eco *:not(#bub):not(#bub *){animation:none!important;transition:none!import
 #stx,#stx p{font-size:inherit!important;letter-spacing:inherit!important;line-height:inherit!important}
 @media(max-width:999px){.view1 .nm b{white-space:nowrap}.view1 .nm b .n2{display:inline}}
 #stx{color:var(--gray)!important}
-@media(max-width:999px){#card{margin-top:0!important;padding-top:0!important;border-top:0!important}#card.open #info{margin-top:10px!important;padding-top:10px!important}}
 
 /* som + tema ao lado do nome */
 #snd,#thm,#snd2,#thm2{position:static!important;width:clamp(36px,2.8vw,46px)!important;height:clamp(36px,2.8vw,46px)!important}
@@ -438,6 +436,19 @@ html[data-theme=light] #snd,html[data-theme=light] #thm,html[data-theme=light] #
 html[data-theme=light] #contact a.pin{background:#d3e8dc!important;color:#2F7A5A!important;border-color:#b7d7c5!important}
 html[data-theme=light] .pin .dot{fill:#d3e8dc}
 @media(max-width:999px){.view1 .nm b{font-size:clamp(13px,4.3vw,18px)!important}}
+
+/* ícones Instagram / WhatsApp / mapa: embaixo à direita do perfil */
+.srow{display:none}
+@media(min-width:1000px){.srow{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}.srow .soc{display:flex!important;width:clamp(38px,3vw,52px)!important;height:clamp(38px,3vw,52px)!important;margin:0!important}}
+.soc.ig,.soc.wa,.soc.mp{background:var(--yl);border-color:var(--yl);color:var(--bg)}
+html[data-theme=light] .soc.ig,html[data-theme=light] .soc.wa,html[data-theme=light] .soc.mp{background:#d3e8dc!important;color:#2F7A5A!important;border-color:#b7d7c5!important}
+.soc .fb svg,.srow .soc svg{width:62%;height:62%}
+.soc.mp .dot{fill:var(--yl)}html[data-theme=light] .soc.mp .dot{fill:#d3e8dc}
+
+/* mesma linha: Instagram, WhatsApp, mapa, som e tema (embaixo, à direita) */
+#snd,#thm,#snd2,#thm2{position:static!important}
+@media(min-width:1000px){.srow #snd,.srow #thm{width:clamp(38px,3vw,52px)!important;height:clamp(38px,3vw,52px)!important}}
+@media(max-width:999px){#tgrow .ctrls{flex-direction:row;gap:5px}#tgrow .soc,#tgrow #snd2,#tgrow #thm2{width:36px!important;height:36px!important}}
 </style>
 </head>
 <body>
@@ -446,13 +457,10 @@ html[data-theme=light] .pin .dot{fill:#d3e8dc}
   <div class="fade" id="gt"></div><div class="fade" id="gb"></div>
   <div id="leaves"></div>
   <div id="top" aria-label="Hora e data"><div id="hmsw"><div id="hms"></div></div><div id="wd"></div><div id="dt"></div></div>
-  <div id="bot" class="info-open">
+  <div id="bot">
     <button id="sm" type="button" aria-expanded="false"><b>Silvia Zuffo</b><span><i class="open">Sobre mim ▲</i><i class="close">▼</i></span></button>
     <div id="dock">
     <div id="side">
-      <div class="tbtn tb-m"><button id="snd2" class="snd" type="button" aria-label="Som" title="Som">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z" fill="currentColor"/><g class="w"><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a8 8 0 0 1 0 11"/></g><g class="x"><path d="M16 9.5l5 5M21 9.5l-5 5"/></g></svg>
-      </button><button id="thm2" class="thm" type="button" aria-label="Dia e noite" title="Dia / noite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><g class="moon"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z" fill="currentColor"/></g><g class="sun"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg></button></div>
       <div class="fn">Silvia Zuffo</div>
       <div class="view1">
         <div class="ph"><img alt="Silvia Zuffo"></div>
@@ -470,20 +478,27 @@ html[data-theme=light] .pin .dot{fill:#d3e8dc}
                     <div class="sec" hidden></div>
         </div>
       </div>
+      <div class="srow"><a class="soc ig" data-link="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><span class="fb"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2.2" y="2.2" width="19.6" height="19.6" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path transform="translate(12 12) scale(.56) translate(-12 -12)" d="M9 3.5 7.4 5.5H4.5A2.5 2.5 0 0 0 2 8v9.5A2.5 2.5 0 0 0 4.5 20h15a2.5 2.5 0 0 0 2.5-2.5V8a2.5 2.5 0 0 0-2.5-2.5h-2.9L15 3.5H9zm3 4.5a4.6 4.6 0 1 1 0 9.2 4.6 4.6 0 0 1 0-9.2zm0 2a2.6 2.6 0 1 0 0 5.2 2.6 2.6 0 0 0 0-5.2z" fill-rule="evenodd"/></svg></span></a>
+<a class="soc wa" data-link="whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><span class="fb"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10.3" fill="none" stroke="currentColor" stroke-width="1.7"/><path transform="translate(12 12) scale(.56) translate(-12 -12)" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span></a>
+<a class="soc mp" data-link="mapa" href="#" target="_blank" rel="noopener" aria-label="Mapa" title="Mapa"><span class="fb"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.5s-6.8-6.1-6.8-11.2a6.8 6.8 0 0 1 13.6 0c0 5.1-6.8 11.2-6.8 11.2z"/><circle class="dot" cx="12" cy="10.3" r="2.5" fill="#fff"/></svg></span></a><button id="snd" class="snd" type="button" aria-label="Som" title="Som">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z" fill="currentColor"/><g class="w"><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a8 8 0 0 1 0 11"/></g><g class="x"><path d="M16 9.5l5 5M21 9.5l-5 5"/></g></svg>
+      </button><button id="thm" class="thm" type="button" aria-label="Dia e noite" title="Dia / noite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><g class="moon"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z" fill="currentColor"/></g><g class="sun"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg></button></div>
     </div>
-    <div id="card" class="open">
+    <div id="card">
       <div id="tgrow">
         <button id="tg" type="button" aria-expanded="false" aria-controls="card">
           <b class="h">@silvia_zuffo</b>
           <span class="r">Massoterapeuta</span>
           <span class="m"><i class="open">+ detalhes ▲</i><i class="close">+ detalhes ▼</i></span>
         </button>
+        <div class="ctrls"><a class="soc ig" data-link="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><span class="fb"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2.2" y="2.2" width="19.6" height="19.6" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path transform="translate(12 12) scale(.56) translate(-12 -12)" d="M9 3.5 7.4 5.5H4.5A2.5 2.5 0 0 0 2 8v9.5A2.5 2.5 0 0 0 4.5 20h15a2.5 2.5 0 0 0 2.5-2.5V8a2.5 2.5 0 0 0-2.5-2.5h-2.9L15 3.5H9zm3 4.5a4.6 4.6 0 1 1 0 9.2 4.6 4.6 0 0 1 0-9.2zm0 2a2.6 2.6 0 1 0 0 5.2 2.6 2.6 0 0 0 0-5.2z" fill-rule="evenodd"/></svg></span></a>
+<a class="soc wa" data-link="whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><span class="fb"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10.3" fill="none" stroke="currentColor" stroke-width="1.7"/><path transform="translate(12 12) scale(.56) translate(-12 -12)" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span></a>
+<a class="soc mp" data-link="mapa" href="#" target="_blank" rel="noopener" aria-label="Mapa" title="Mapa"><span class="fb"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.5s-6.8-6.1-6.8-11.2a6.8 6.8 0 0 1 13.6 0c0 5.1-6.8 11.2-6.8 11.2z"/><circle class="dot" cx="12" cy="10.3" r="2.5" fill="#fff"/></svg></span></a><button id="snd2" class="snd" type="button" aria-label="Som" title="Som">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z" fill="currentColor"/><g class="w"><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a8 8 0 0 1 0 11"/></g><g class="x"><path d="M16 9.5l5 5M21 9.5l-5 5"/></g></svg>
+      </button><button id="thm2" class="thm" type="button" aria-label="Dia e noite" title="Dia / noite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><g class="moon"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z" fill="currentColor"/></g><g class="sun"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg></button></div>
         
       </div>
       <div id="info">
-        <div class="tbtn tb-d"><button id="snd" class="snd" type="button" aria-label="Som" title="Som">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z" fill="currentColor"/><g class="w"><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a8 8 0 0 1 0 11"/></g><g class="x"><path d="M16 9.5l5 5M21 9.5l-5 5"/></g></svg>
-      </button><button id="thm" class="thm" type="button" aria-label="Dia e noite" title="Dia / noite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><g class="moon"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z" fill="currentColor"/></g><g class="sun"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg></button></div>
         <div class="hl">
           <div id="handle"></div>
           <div id="role">Massoterapeuta</div>
